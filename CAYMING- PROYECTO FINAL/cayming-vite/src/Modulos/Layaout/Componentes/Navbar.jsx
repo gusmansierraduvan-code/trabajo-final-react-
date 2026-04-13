@@ -1,15 +1,37 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+  const [autenticado, setAutenticado] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setAutenticado(localStorage.getItem('autenticado') === 'true');
+    const handleStorageChange = () => {
+      setAutenticado(localStorage.getItem('autenticado') === 'true');
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, []);
+
+  const cerrarSesion = () => {
+    localStorage.removeItem('autenticado');
+    localStorage.removeItem('autenticado_usuario');
+    setAutenticado(false);
+    navigate('/login');
+  };
+
   return (
     <nav style={navStyle}>
       <div style={logoStyle}>CAY<span style={{color: '#646cff'}}>MING</span></div>
       
       <div style={linksContainer}>
         <Link to="/" style={linkStyle}>INICIO</Link>
-        <Link to="/Login" style={linkStyle}>INGRESAR</Link>
-        <Link to="/Registro" style={linkStyle}>REGISTRARSE</Link>
+        {!autenticado && <Link to="/login" style={linkStyle}>INGRESAR</Link>}
+        {!autenticado && <Link to="/registro" style={linkStyle}>REGISTRARSE</Link>}
+        {autenticado && <Link to="/perfil" style={linkStyle}>MI PERFIL</Link>}
+        {autenticado && <button onClick={cerrarSesion} style={logoutBtn}>CERRAR SESIÓN</button>}
       </div>
     </nav>
   );
@@ -44,6 +66,17 @@ const linkStyle = {
   fontWeight: 'bold',
   letterSpacing: '1px',
   transition: '0.3s'
+};
+
+const logoutBtn = {
+  background: 'transparent',
+  border: '1px solid #646cff',
+  color: '#c9b68d',
+  borderRadius: '4px',
+  padding: '8px 12px',
+  cursor: 'pointer',
+  fontSize: '0.9rem',
+  fontWeight: 'bold'
 };
 
 export default Navbar;

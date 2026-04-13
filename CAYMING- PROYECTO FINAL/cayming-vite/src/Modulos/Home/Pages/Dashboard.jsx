@@ -6,7 +6,7 @@ const Dashboard = () => {
 
   const cerrarSesion = () => {
     localStorage.removeItem('autenticado');
-    navigate('/Login');
+    navigate('/login');
   };
 
   return (
@@ -18,9 +18,10 @@ const Dashboard = () => {
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px', marginTop: '40px' }}>
         {/* BOTONES A LOS MÓDULOS CRUD */}
-        <Link to="/GestionJuegos" style={cardLink}>🎮 GESTIÓN DE JUEGOS</Link>
-        <Link to="/GestionUsuarios" style={cardLink}>👥 GESTIÓN DE USUARIOS</Link>
-        <Link to="/GestionVentas" style={cardLink}>💰 GESTIÓN DE VENTAS</Link>
+        <Link to="/gestionjuegos" style={cardLink}>🎮 GESTIÓN DE JUEGOS</Link>
+        <Link to="/gestionusuarios" style={cardLink}>👥 GESTIÓN DE USUARIOS</Link>
+        <Link to="/gestionventas" style={cardLink}>💰 GESTIÓN DE VENTAS</Link>
+        <Link to="/perfil" style={cardLink}>👤 MI PERFIL</Link>
       </div>
     </div>
   );

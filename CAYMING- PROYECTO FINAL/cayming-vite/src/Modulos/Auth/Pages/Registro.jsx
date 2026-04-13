@@ -1,66 +1,106 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Registro = () => {
-  return (
-    <div style={pageWrapper}>
-      <div style={formContainer}>
-        <h2 style={formTitle}>CREAR CUENTA</h2>
+    const [nombre, setNombre] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+
+    const manejarRegistro = (e) => {
+        e.preventDefault();
         
-        <input type="text" placeholder="Nombre completo" style={inputStyle} />
-        <input type="email" placeholder="Correo electrónico" style={inputStyle} />
-        <input type="password" placeholder="Contraseña" style={inputStyle} />
-        <input type="password" placeholder="Confirmar contraseña" style={inputStyle} />
-        
-        <button style={btnBlue}>REGISTRARSE</button>
-        <p style={{ color: '#888', fontSize: '12px', marginTop: '10px' }}>
-          ¿Ya tienes una cuenta? <span style={{ color: '#646cff', cursor: 'pointer' }}>Inicia sesión</span>
-        </p>
-      </div>
-    </div>
-  );
+        const nuevoUsuario = { nombre, email, password };
+
+        const usuariosExistentes = JSON.parse(localStorage.getItem('usuarios')) || [];
+        usuariosExistentes.push(nuevoUsuario);
+        localStorage.setItem('usuarios', JSON.stringify(usuariosExistentes));
+
+        alert("¡Cuenta creada con éxito! Ahora puedes iniciar sesión.");
+        navigate('/login'); 
+    };
+
+    return (
+        <div style={pageWrapper}>
+            <form style={formContainer} onSubmit={manejarRegistro}> 
+                <h2 style={formTitle}>CREAR CUENTA</h2>
+                
+                <input 
+                    type="text" 
+                    placeholder="Nombre completo" 
+                    style={inputStyle} 
+                    onChange={(e) => setNombre(e.target.value)} 
+                    required 
+                />
+                <input 
+                    type="email" 
+                    placeholder="Correo electrónico" 
+                    style={inputStyle} 
+                    onChange={(e) => setEmail(e.target.value)} 
+                    required 
+                />
+                <input 
+                    type="password" 
+                    placeholder="Contraseña" 
+                    style={inputStyle} 
+                    onChange={(e) => setPassword(e.target.value)} 
+                    required 
+                />
+                
+                <button type="submit" style={btnBlue}>REGISTRARSE</button>
+                
+                <p style={{ color: '#888', fontSize: '12px', marginTop: '15px', textAlign: 'center' }}>
+                    ¿Ya tienes cuenta? <span style={{ color: '#646cff', cursor: 'pointer' }} onClick={() => navigate('/login')}>Inicia sesión</span>
+                </p>
+            </form>
+        </div>
+    );
 };
 
+// --- ESTILOS (Esto es lo que faltaba para que no de error) ---
 const pageWrapper = {
-  backgroundColor: '#0d0f12',
-  minHeight: '100vh',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  padding: '20px'
+    height: '100vh',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#0d0f12'
 };
 
 const formContainer = {
-  backgroundColor: '#15181b',
-  border: '1px solid #646cff',
-  padding: '50px 40px',
-  width: '100%',
-  maxWidth: '400px',
-  textAlign: 'center',
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '20px', 
-  borderRadius: '8px'
+    backgroundColor: '#1a1d23',
+    padding: '40px',
+    borderRadius: '8px',
+    border: '1px solid #3d3a2e',
+    display: 'flex',
+    flexDirection: 'column',
+    width: '350px'
 };
 
-const formTitle = { color: '#f0d486', fontFamily: 'Cinzel', marginBottom: '10px' };
+const formTitle = {
+    color: '#f0d486',
+    fontFamily: 'Cinzel, serif',
+    textAlign: 'center',
+    marginBottom: '20px'
+};
 
 const inputStyle = {
-  backgroundColor: '#0d0f12',
-  border: '1px solid #3d3a2e',
-  padding: '12px',
-  color: 'white',
-  borderRadius: '4px',
-  outline: 'none'
+    padding: '12px',
+    marginBottom: '15px',
+    borderRadius: '4px',
+    border: '1px solid #3d3a2e',
+    backgroundColor: '#0d0f12',
+    color: 'white'
 };
 
 const btnBlue = {
-  backgroundColor: '#646cff',
-  color: 'white',
-  border: 'none',
-  padding: '12px',
-  fontWeight: 'bold',
-  cursor: 'pointer',
-  borderRadius: '4px'
+    backgroundColor: '#646cff',
+    color: 'white',
+    border: 'none',
+    padding: '12px',
+    borderRadius: '4px',
+    fontWeight: 'bold',
+    cursor: 'pointer',
+    marginTop: '10px'
 };
 
 export default Registro;

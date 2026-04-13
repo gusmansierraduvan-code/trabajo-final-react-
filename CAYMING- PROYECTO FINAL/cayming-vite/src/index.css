@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+
+/* RESET TOTAL */
+* {
+  margin: 0 !important;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html, #root {
+  background-color: #0d0f12 !important;
+  color: #c9b68d !important;
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+}
+
+/* ESTILO ELDEN RING PARA TÍTULOS */
+h1, h2, h3, .titulo-game {
+  font-family: 'Cinzel', serif !important;
+  color: #f0d486 !important;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-align: center;
+}
+
+/* TARJETAS DEL HOME */
+.grid-juegos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  padding: 40px 10%;
+}
+
+.card-elden {
+  background-color: #15181b !important;
+  border: 1px solid #3d3a2e !important;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-elden img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-bottom: 1px solid #3d3a2e;
+}
+
+.card-info {
+  padding: 20px;
+  text-align: center;
+}
+
+.btn-comprar {
+  background: transparent !important;
+  border: 1px solid #f0d486 !important;
+  color: #f0d486 !important;
+  padding: 10px;
+  width: 100%;
+  cursor: pointer;
+  font-family: 'Cinzel', serif;
+  margin-top: 15px !important;
+}
+
+.btn-comprar:hover {
+  background-color: #f0d486 !important;
+  color: #000 !important;
+}
+/* Layout General */
+.main-container {
+    padding-bottom: 100px;
+}
+
+.hero-section {
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-bottom: 1px solid #3d3a2e;
+    background: radial-gradient(circle, rgba(61,58,46,0.1) 0%, rgba(13,15,18,1) 80%);
+}
+
+.titulo-principal {
+    font-size: 5rem !important;
+    margin-bottom: 10px !important;
+}
+
+.subtitulo {
+    color: #888 !important;
+    letter-spacing: 5px !important;
+    font-size: 0.9rem !important;
+}
+
+.separador-dorado {
+    width: 80px;
+    height: 1px;
+    background: #f0d486;
+    margin-top: 30px;
+    box-shadow: 0 0 10px #f0d486;
+}
+
+/* Ajuste de tarjetas para que no se amontonen */
+.image-box {
+    position: relative;
+    height: 180px;
+    overflow: hidden;
+}
+
+.badge-precio {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #0d0f12;
+    padding: 5px 10px;
+    border: 1px solid #f0d486;
+    font-size: 0.8rem;
+    color: #f0d486;
+}
+
+.card-info h3 {
+    font-size: 1rem !important;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px !important;
+}

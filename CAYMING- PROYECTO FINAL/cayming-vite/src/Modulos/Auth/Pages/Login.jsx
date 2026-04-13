@@ -24,6 +24,9 @@ const Login = () => {
       // Esta línea es la que necesita el componente Perfil:
       localStorage.setItem('autenticado_usuario', JSON.stringify(datosUsuario)); 
       
+      // Notificar al Navbar que la autenticación cambió
+      window.dispatchEvent(new Event('authChanged'));
+      
       alert('¡Bienvenido a CAYMING!');
       navigate('/dashboard');
     } else {

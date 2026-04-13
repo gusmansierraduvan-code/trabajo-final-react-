@@ -41,8 +41,11 @@ const Perfil = () => {
 
     return (
         <div style={pageWrapper}>
+            <button onClick={() => navigate('/dashboard')} style={backBtnStyle} title="Volver atrás">
+                ← ATRÁS
+            </button>
             <form style={formContainer} onSubmit={guardarCambios}>
-                <h2 style={formTitle}>MI PERFIL</h2>
+                <h2 style={formTitle}>👤 MI PERFIL</h2>
                 
                 <label style={labelStyle}>Nombre:</label>
                 <input 
@@ -74,14 +77,14 @@ const Perfil = () => {
                 />
                 
                 <button type="submit" style={btnGold}>GUARDAR CAMBIOS</button>
-                <button type="button" style={btnVolver} onClick={() => navigate('/dashboard')}>VOLVER AL DASHBOARD</button>
             </form>
         </div>
     );
 };
 
 // --- ESTILOS ---
-const pageWrapper = { height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#0d0f12' };
+const pageWrapper = { height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#0d0f12', position: 'relative' };
+const backBtnStyle = { position: 'fixed', top: '80px', left: '20px', backgroundColor: 'transparent', color: '#c9b68d', border: '1px solid #3d3a2e', padding: '8px 12px', cursor: 'pointer', borderRadius: '4px', fontSize: '1.1rem', transition: 'all 0.3s ease', zIndex: 999, fontWeight: '500', letterSpacing: '1px' };
 const formContainer = {
   backgroundColor: '#1a1d23',
   padding: '40px',

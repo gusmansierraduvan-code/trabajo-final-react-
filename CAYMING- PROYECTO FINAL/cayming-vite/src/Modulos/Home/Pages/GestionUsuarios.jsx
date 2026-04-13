@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const GestionUsuarios = () => {
+  const navigate = useNavigate();
   const [usuarios, setUsuarios] = useState([]);
   const [nuevoUsuario, setNuevoUsuario] = useState({ nombre: '', email: '', rol: 'Cliente' });
 
@@ -31,7 +33,12 @@ const GestionUsuarios = () => {
 
   return (
     <div style={containerStyle}>
-      <h2 style={headerStyle}>👥 GESTIÓN DE USUARIOS - CAYMING</h2>
+      <button onClick={() => navigate('/dashboard')} style={backBtnStyle} title="Volver atrás">
+        ← ATRÁS
+      </button>
+      <div style={headerContainer}>
+        <h2 style={headerStyle}>👥 GESTIÓN DE USUARIOS - CAYMING</h2>
+      </div>
 
       <form onSubmit={agregarUsuario} style={formStyle}>
         <div style={inputGroup}>
@@ -108,8 +115,10 @@ const GestionUsuarios = () => {
 };
 
 // --- REUTILIZAMOS LOS ESTILOS DEL MÓDULO ANTERIOR PARA MANTENER LA ESTÉTICA ---
-const containerStyle = { padding: '40px 10%', backgroundColor: '#0d0f12', minHeight: '100vh', color: 'white' };
-const headerStyle = { color: '#f0d486', textAlign: 'center', marginBottom: '40px', fontFamily: 'Cinzel, serif' };
+const containerStyle = { padding: '40px 10%', backgroundColor: '#0d0f12', minHeight: '100vh', color: 'white', position: 'relative' };
+const backBtnStyle = { position: 'fixed', top: '80px', left: '20px', backgroundColor: 'transparent', color: '#c9b68d', border: '1px solid #3d3a2e', padding: '8px 12px', cursor: 'pointer', borderRadius: '4px', fontSize: '1.1rem', transition: 'all 0.3s ease', zIndex: 999, fontWeight: '500', letterSpacing: '1px' };
+const headerContainer = { marginBottom: '40px', marginTop: '20px' };
+const headerStyle = { color: '#f0d486', marginBottom: 0, fontFamily: 'Cinzel, serif', fontSize: '1.8rem' };
 const formStyle = { display: 'flex', gap: '20px', backgroundColor: '#1a1d23', padding: '25px', borderRadius: '8px', marginBottom: '40px', alignItems: 'flex-end', border: '1px solid #3d3a2e' };
 const inputGroup = { display: 'flex', flexDirection: 'column', gap: '8px', flex: 1 };
 const labelStyle = { fontSize: '0.8rem', color: '#888' };
